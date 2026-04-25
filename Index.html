@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café automatizado</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
 
 </head>
 <body>
@@ -14,17 +15,17 @@
     </div>
 
     <div class="links">
-      <a href="#">Início</a>
-      <a href="#">Cardápio</a>
+      <a href="#home">Início</a>
+      <a href="#cardapio">Cardápio</a>
       <a href="#">Nossa História</a>
     </div>
 
-    <div class="carrinho">
-      🛒
-    </div>
+    <button class="cart-icon" id="abrirCarrinho" type="button" aria-label="Abrir Carrinho">
+      🛒 <span id="contadorCarrinho">0</span>
+    </button>
   </nav>
 
-  <section class="cafeAutomatizado">
+  <section class="cafeAutomatizado" id ="home">
     <div class="bemVindo">
       <small>BEM-VINDO AO</small>
       <h1>Café Autômatizado</h1>
@@ -32,78 +33,42 @@
         Onde a tradição artesanal encontra a inovação tecnológica.
         Cada xícara, uma experiência perfeita.
       </p>
-      <a href="#" class="btn">Ver Cardápio</a>
+      <a href="#" class="btn" onclick="Cardapio()">Ver Cardápio</a>
     </div>
   </section>
-    <section class="menu">
-  <div class="container">
-    
-    <span class="subtitle">NOSSO</span>
-    <h2>Cardápio</h2>
 
-    <!-- filtros -->
-    <div class="filters">
-      <button class="tipos">Cafés</button>
-      <button class="tipos">Especiais</button>
-      <button class="tipos">Doces</button>
-      <button class="tipos">Salgados</button>
-    </div>
+<section id="cardapio" class="cardapio">
+      <p class="subtitulo">NOSSO</p>
+      <h2>Cardápio</h2>
 
-
-     <!-- Cartões de pedido cafés -->
-    <div class="grid">
-
-      <div class="card">
-        <div class="pedido">
-          <h3>Espresso</h3>
-          <span>R$ 7,90</span>
-        </div>
-        <p>Café puro e intenso, extraído na pressão perfeita</p>
-        <button>+ Adicionar</button>
+      <div class="categorias">
+        <button class="categoria ativa" data-cat="cafes" type="button">Cafés</button>
+        <button class="categoria" data-cat="especiais" type="button">Especiais</button>
+        <button class="categoria" data-cat="doces" type="button">Doces</button>
+        <button class="categoria" data-cat="salgados" type="button">Salgados</button>
       </div>
 
-      <div class="card">
-        <div class="pedido">
-          <h3>Cappuccino</h3>
-          <span>R$ 12,90</span>
-        </div>
-        <p>Espresso com leite vaporizado e espuma cremosa</p>
-        <button>+ Adicionar</button>
+      <div class="grid-cardapio" id="gridCardapio"></div>
+    </section>
+
+
+
+<div id="overlayCarrinho" class="overlay-carrinho"></div>
+
+    <aside id="carrinho" class="carrinho" aria-label="Carrinho de compras">
+      <div class="carrinho-topo">
+        <h3>Seu Pedido</h3>
+        <button id="fecharCarrinho" class="fechar-carrinho" type="button" aria-label="Fechar carrinho">✕</button>
       </div>
 
-      <div class="card">
-        <div class="pedido">
-          <h3>Latte</h3>
-          <span>R$ 14,90</span>
-        </div>
-        <p>Espresso suave com leite sedoso e latte art</p>
-        <button>+ Adicionar</button>
+      <div id="itensCarrinho" class="itens-carrinho"></div>
+
+      <div class="total">
+        <span>Total:</span>
+        <span id="total">R$ 0,00</span>
       </div>
 
-      <div class="card">
-        <div class="pedido">
-          <h3>Americano</h3>
-          <span>R$ 9,90</span>
-        </div>
-        <p>Espresso diluído em água quente, sabor equilibrado</p>
-        <button>+ Adicionar</button>
-      </div>
-
-      <div class="card">
-        <div class="pedido">
-          <h3>Macchiato</h3>
-          <span>R$ 10,90</span>
-        </div>
-        <p>Espresso marcado com toque de espuma de leite</p>
-        <button>+ Adicionar</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
+      <button id="finalizar" type="button">Finalizar Pedido</button>
+    </aside>>
 </body>
 </html>
