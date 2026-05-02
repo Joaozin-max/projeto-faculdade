@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Café Autômato | Cafeteria</title>
+
+    <meta
+      name="description"
+      content="Cardápio digital em HTML, CSS e JavaScript com carrinho e finalização de pedido."
+    />
+
+    <link rel="stylesheet" href="projeto.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="projeto.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a class="logo" href="#home" aria-label="Ir para o início">
+        <span class="logo-icone">☕</span>
+        <span>Café Autômato</span>
+      </a>
+
+      <div class="links" aria-label="Navegação principal">
+        <a href="#home">Início</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#historia">Nossa História</a>
+
+        <div class="user-menu" id="userMenu">
+          <button class="user-trigger" id="userTrigger" type="button">
+            <span class="user-avatar">👤</span>
+            <span id="userName">Usuário</span>
+            <span class="seta">▼</span>
+          </button>
+
+          <div class="dropdown" id="dropdownMenu">
+            <a href="#">Meu perfil</a>
+            <a href="#">Meus pedidos</a>
+            <button id="btnSair" type="button">Sair</button>
+          </div>
+        </div>
+
+        <a href="indeex.html" id="linkAuth">Login</a>
+      </div>
+
+      <button class="cart-icon" id="abrirCarrinho" type="button" aria-label="Abrir carrinho">
+        🛒 <span id="contadorCarrinho">0</span>
+      </button>
+    </nav>
+
+    <main>
+      <section class="cafeAutomatizado" id="home">
+        <div class="bemVindo reveal">
+          <small>BEM-VINDO AO</small>
+          <h1>Café Autômatizado</h1>
+          <p>
+            Onde a tradição artesanal encontra a inovação tecnológica. Cada xícara, uma experiência
+            perfeita.
+          </p>
+          <a href="#cardapio" class="btn">Ver Cardápio</a>
+        </div>
+      </section>
+
+      <section id="cardapio" class="cardapio">
+        <p class="subtitulo reveal">NOSSO</p>
+        <h2 class="reveal">Cardápio</h2>
+
+        <div class="categorias reveal">
+          <button class="categoria ativa" data-cat="cafes" type="button">Cafés</button>
+          <button class="categoria" data-cat="especiais" type="button">Especiais</button>
+          <button class="categoria" data-cat="doces" type="button">Doces</button>
+          <button class="categoria" data-cat="salgados" type="button">Salgados</button>
+        </div>
+
+        <div class="grid-cardapio" id="gridCardapio"></div>
+      </section>
+
+      <section class="historia" id="historia">
+        <p class="subtitulo reveal">NOSSA HISTÓRIA</p>
+        <h2 class="reveal">Café preciso, acolhimento humano.</h2>
+      </section>
+    </main>
+
+    <div id="overlayCarrinho" class="overlay-carrinho"></div>
+
+    <aside id="carrinho" class="carrinho" aria-label="Carrinho de compras">
+      <div class="carrinho-topo">
+        <div>
+          <p>SEU PEDIDO</p>
+          <h3>Carrinho</h3>
+        </div>
+
+        <button
+          id="fecharCarrinho"
+          class="fechar-carrinho"
+          type="button"
+          aria-label="Fechar carrinho"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="etapas-pedido" aria-label="Etapas do pedido">
+        <span class="etapa ativa" data-etapa="carrinho">1. Itens</span>
+        <span class="etapa" data-etapa="dados">2. Dados</span>
+        <span class="etapa" data-etapa="confirmado">3. OK</span>
+      </div>
+
+      <div id="telaCarrinho" class="tela-pedido ativa">
+        <div id="itensCarrinho" class="itens-carrinho"></div>
+
+        <div class="rodape-carrinho">
+          <div class="total">
+            <span>Total:</span>
+            <span id="total">R$ 0,00</span>
+          </div>
+
+          <button id="finalizar" type="button">Finalizar Pedido</button>
+        </div>
+      </div>
+
+      <form id="formPedido" class="tela-pedido form-pedido">
+        <label>
+          Nome para o pedido
+          <input id="nomeCliente" type="text" placeholder="Seu nome" autocomplete="name" />
+        </label>
+
+        <label>
+          Observações
+          <textarea id="observacao" placeholder="Ex: sem açúcar, retirar no balcão..."></textarea>
+        </label>
+
+        <div class="rodape-carrinho">
+          <div class="total">
+            <span>Total:</span>
+            <span id="totalFinalizacao">R$ 0,00</span>
+          </div>
+
+          <button type="submit">Confirmar Compra</button>
+
+          <button id="voltarCarrinho" class="btn-secundario" type="button">
+            Voltar ao Carrinho
+          </button>
+        </div>
+      </form>
+
+      <div id="pedidoConfirmado" class="tela-pedido pedido-confirmado">
+        <div class="check">✓</div>
+        <h3>Pedido realizado!</h3>
+        <p id="mensagemConfirmacao"></p>
+        <p id="observacaoConfirmada" class="observacao-confirmada"></p>
+        <button id="novoPedido" type="button">Novo Pedido</button>
+      </div>
+    </aside>
+  </body>
+</html>
