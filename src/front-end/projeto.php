@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login/login.php");
+    exit;
+}
+
+$nomeUsuario = $_SESSION['usuario_nome'];
+?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -11,9 +21,6 @@
     />
 
     <link rel="stylesheet" href="projeto.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="cadastro/auth.js" defer></script>
     <script src="projeto.js" defer></script>
   </head>
 
@@ -32,18 +39,24 @@
         <div class="user-menu" id="userMenu">
           <button class="user-trigger" id="userTrigger" type="button">
             <span class="user-avatar">👤</span>
-            <span id="userName">Usuário</span>
+            <span id="userName"><?= htmlspecialchars($nomeUsuario) ?></span>
             <span class="seta">▼</span>
           </button>
 
           <div class="dropdown" id="dropdownMenu">
             <a href="#">Meu perfil</a>
             <a href="#">Meus pedidos</a>
-            <button id="btnSair" type="button">Sair</button>
+            <a href="logout.php">Sair</a>
           </div>
         </div>
 
-        <a href="login/login.html" id="linkAuth">Login</a>
+        <?php if (!isset($_SESSION['usuario_id'])): ?>
+
+<a href="login/login.php" id="linkAuth">
+  Login
+</a>
+
+<?php endif; ?>
       </div>
 
       <button class="cart-icon" id="abrirCarrinho" type="button" aria-label="Abrir carrinho">
