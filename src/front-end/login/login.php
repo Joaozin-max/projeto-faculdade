@@ -45,38 +45,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section class="login-page">
   <div class="login-container">
-    <div class="login-box">
-      <span class="tag">Cafeteria Especial</span>
 
-      <h1>Entrar</h1>
+    <div class="login-left">
+      <div class="login-box">
+        <span class="tag">Cafeteria Especial</span>
 
-      <p class="subtitle">Acesse sua conta para continuar.</p>
+        <h1>Bem-vindo</h1>
 
-      <?php if (!empty($erro)): ?>
-        <p style="color: red; margin-bottom: 15px;">
-          <?= htmlspecialchars($erro) ?>
+        <?php if (!empty($erro)): ?>
+          <p class="erro">
+            <?= htmlspecialchars($erro) ?>
+          </p>
+        <?php endif; ?>
+
+        <form action="login.php" method="POST">
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="input-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
+          </div>
+
+          <button class="btn" type="submit">Entrar</button>
+        </form>
+
+        <p class="account">
+          Não tem conta?
+          <a href="../cadastro/pag_cadastro.php">Criar conta</a>
         </p>
-      <?php endif; ?>
-
-      <form action="login.php" method="POST">
-        <div class="input-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-        </div>
-
-        <div class="input-group">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-        </div>
-
-        <button class="btn" type="submit">Entrar</button>
-      </form>
-
-      <p class="account">
-        Não tem conta?
-        <a href="../cadastro/pag_cadastro.php">Cadastrar</a>
-      </p>
+      </div>
     </div>
+
+    <div class="login-right">
+      <div class="overlay">
+        <h2>O melhor café ☕</h2>
+      </div>
+    </div>
+
   </div>
 </section>
 
