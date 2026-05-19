@@ -34,7 +34,6 @@ $nomeUsuario = $_SESSION['usuario_nome'];
       <div class="links" aria-label="Navegação principal">
         <a href="#home">Início</a>
         <a href="#cardapio">Cardápio</a>
-        <a href="#historia">Nossa História</a>
 
         <div class="user-menu" id="userMenu">
           <button class="user-trigger" id="userTrigger" type="button">
