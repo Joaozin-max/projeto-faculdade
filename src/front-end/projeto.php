@@ -32,7 +32,6 @@ $nomeUsuario = $_SESSION['usuario_nome'] ?? 'Usuário';
       <div class="links" aria-label="Navegação principal">
         <a href="#home">Início</a>
         <a href="#cardapio">Cardápio</a>
-        <a href="#historia">Nossa História</a>
 
         <!-- Menu do usuário logado -->
         <div class="user-menu" id="userMenu">
