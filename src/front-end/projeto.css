@@ -148,7 +148,7 @@ button {
 
 .user-menu {
   position: relative;
-  display: none;
+  display: flex;
   align-items: center;
 }
 
@@ -186,6 +186,9 @@ button {
   border-radius: 14px;
   background: var(--card);
   box-shadow: 0 14px 35px rgba(58, 28, 14, 0.22);
+}
+.dropdown.ativo {
+  display: flex;
 }
 
 .dropdown a,

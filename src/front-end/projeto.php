@@ -1,24 +1,22 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login/login.php");
+// Protege a página: usuário sem sessão volta para a tela de login.
+if (empty($_SESSION['usuario_id'])) {
+    header('Location: login/login.php');
     exit;
 }
 
-$nomeUsuario = $_SESSION['usuario_nome'];
+// Evita erro caso o nome não exista na sessão.
+$nomeUsuario = $_SESSION['usuario_nome'] ?? 'Usuário';
 ?>
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br"> 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Café Autômato | Cafeteria</title>
-
-    <meta
-      name="description"
-      content="Cardápio digital em HTML, CSS e JavaScript com carrinho e finalização de pedido."
-    />
+    <meta name="description" content="Cardápio digital com carrinho e finalização de pedido." />
 
     <link rel="stylesheet" href="projeto.css" />
     <script src="projeto.js" defer></script>
@@ -36,10 +34,11 @@ $nomeUsuario = $_SESSION['usuario_nome'];
         <a href="#cardapio">Cardápio</a>
         <a href="#historia">Nossa História</a>
 
+        <!-- Menu do usuário logado -->
         <div class="user-menu" id="userMenu">
-          <button class="user-trigger" id="userTrigger" type="button">
+          <button class="user-trigger" id="userTrigger" type="button" aria-expanded="false" aria-controls="dropdownMenu">
             <span class="user-avatar">👤</span>
-            <span id="userName"><?= htmlspecialchars($nomeUsuario) ?></span>
+            <span id="userName"><?= htmlspecialchars($nomeUsuario, ENT_QUOTES, 'UTF-8') ?></span>
             <span class="seta">▼</span>
           </button>
 
@@ -49,14 +48,6 @@ $nomeUsuario = $_SESSION['usuario_nome'];
             <a href="logout.php">Sair</a>
           </div>
         </div>
-
-        <?php if (!isset($_SESSION['usuario_id'])): ?>
-
-<a href="login/login.php" id="linkAuth">
-  Login
-</a>
-
-<?php endif; ?>
       </div>
 
       <button class="cart-icon" id="abrirCarrinho" type="button" aria-label="Abrir carrinho">
@@ -68,11 +59,8 @@ $nomeUsuario = $_SESSION['usuario_nome'];
       <section class="cafeAutomatizado" id="home">
         <div class="bemVindo reveal">
           <small>BEM-VINDO AO</small>
-          <h1>Café Autômatizado</h1>
-          <p>
-            Onde a tradição artesanal encontra a inovação tecnológica. Cada xícara, uma experiência
-            perfeita.
-          </p>
+          <h1>Café Automatizado</h1>
+          <p>Onde a tradição artesanal encontra a inovação tecnológica. Cada xícara, uma experiência perfeita.</p>
           <a href="#cardapio" class="btn">Ver Cardápio</a>
         </div>
       </section>
@@ -81,6 +69,7 @@ $nomeUsuario = $_SESSION['usuario_nome'];
         <p class="subtitulo reveal">NOSSO</p>
         <h2 class="reveal">Cardápio</h2>
 
+        <!-- Os botões usam data-cat para o JavaScript saber qual categoria mostrar -->
         <div class="categorias reveal">
           <button class="categoria ativa" data-cat="cafes" type="button">Cafés</button>
           <button class="categoria" data-cat="especiais" type="button">Especiais</button>
@@ -106,14 +95,7 @@ $nomeUsuario = $_SESSION['usuario_nome'];
           <h3>Carrinho</h3>
         </div>
 
-        <button
-          id="fecharCarrinho"
-          class="fechar-carrinho"
-          type="button"
-          aria-label="Fechar carrinho"
-        >
-          ✕
-        </button>
+        <button id="fecharCarrinho" class="fechar-carrinho" type="button" aria-label="Fechar carrinho">✕</button>
       </div>
 
       <div class="etapas-pedido" aria-label="Etapas do pedido">
@@ -138,7 +120,7 @@ $nomeUsuario = $_SESSION['usuario_nome'];
       <form id="formPedido" class="tela-pedido form-pedido">
         <label>
           Nome para o pedido
-          <input id="nomeCliente" type="text" placeholder="Seu nome" autocomplete="name" />
+          <input id="nomeCliente" type="text" placeholder="Seu nome" autocomplete="name" required />
         </label>
 
         <label>
@@ -153,10 +135,7 @@ $nomeUsuario = $_SESSION['usuario_nome'];
           </div>
 
           <button type="submit">Confirmar Compra</button>
-
-          <button id="voltarCarrinho" class="btn-secundario" type="button">
-            Voltar ao Carrinho
-          </button>
+          <button id="voltarCarrinho" class="btn-secundario" type="button">Voltar ao Carrinho</button>
         </div>
       </form>
 

@@ -8,29 +8,36 @@ $senha = trim($_POST['senha'] ?? '');
 $confirmarSenha = trim($_POST['confirmar-senha'] ?? '');
 
 if (empty($nome) || empty($email) || empty($telefone) || empty($senha) || empty($confirmarSenha)) {
-    die("Preencha todos os campos.");
+    die('Preencha todos os campos.');
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die('Digite um e-mail válido.');
 }
 
 if ($senha !== $confirmarSenha) {
-    die("As senhas não conferem.");
+    die('As senhas não conferem.');
 }
 
-$verifica = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
-$verifica->execute([$email]);
+$verificaEmail = $pdo->prepare('SELECT id FROM usuarios WHERE email = ? LIMIT 1');
+$verificaEmail->execute([$email]);
 
-if ($verifica->rowCount() > 0) {
-    die("Este e-mail já está cadastrado.");
+if ($verificaEmail->fetch()) {
+    die('Este e-mail já está cadastrado.');
 }
 
-$sql = "INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)";
-$stmt = $pdo->prepare($sql);
+$senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-$stmt->execute([
+$cadastrarUsuario = $pdo->prepare(
+    'INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)'
+);
+
+$cadastrarUsuario->execute([
     $nome,
     $email,
     $telefone,
-    password_hash($senha, PASSWORD_DEFAULT)
+    $senhaCriptografada
 ]);
 
-header("Location: ../login/login.php");
+header('Location: ../login/login.php');
 exit;

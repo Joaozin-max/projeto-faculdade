@@ -1,126 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro | Cafeteria</title>
 
-  <link rel="stylesheet" href="cadastro.css">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Cadastro | Cafeteria
+    </title>
+
+    <link rel="stylesheet" href="cadastro.css">
 </head>
 
 <body>
 
-<section class="register-page">
+    <main class="register-page">
 
-  <div class="register-container">
+        <section class="register-container">
 
-    <div class="register-left">
-      <div class="overlay">
-        <h2>Crie sua conta ☕</h2>
+            <!-- ÁREA VISUAL -->
+            <div class="register-left">
 
-        <p>
-          Entre para nossa cafeteria e aproveite
-          uma experiência especial.
-        </p>
-      </div>
-    </div>
+                <div class="overlay">
 
-    <div class="register-right">
+                    <h2>
+                        Crie sua conta ☕
+                    </h2>
 
-      <div class="register-box">
+                    <p>
+                        Entre para nossa cafeteria e aproveite uma experiência especial.
+                    </p>
 
-        <span class="tag">Cafeteria Especial</span>
+                </div>
 
-        <h1>Criar conta</h1>
+            </div>
 
-        <p class="subtitle">
-          Preencha seus dados para continuar.
-        </p>
+            <!-- ÁREA DO FORMULÁRIO -->
+            <div class="register-right">
 
-        <form action="cadastro.php" method="POST">
+                <div class="register-box">
 
-          <div class="input-group">
-            <label for="nome">Nome</label>
+                    <span class="tag">
+                        Cafeteria Especial
+                    </span>
 
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              placeholder="Digite seu nome"
-              required
-            >
-          </div>
+                    <h1>
+                        Criar conta
+                    </h1>
 
-          <div class="input-group">
-            <label for="email">E-mail</label>
+                    <p class="subtitle">
+                        Preencha seus dados para continuar.
+                    </p>
 
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Digite seu e-mail"
-              required
-            >
-          </div>
+                    <form action="cadastro.php" method="POST">
 
-          <div class="input-group">
-            <label for="telefone">Telefone</label>
+                        <!-- Nome -->
+                        <div class="input-group">
 
-            <input
-              type="tel"
-              id="telefone"
-              name="telefone"
-              placeholder="Digite seu telefone"
-              required
-            >
-          </div>
+                            <label for="nome">
+                                Nome
+                            </label>
 
-          <div class="input-group">
-            <label for="senha">Senha</label>
+                            <input
+                                type="text"
+                                id="nome"
+                                name="nome"
+                                placeholder="Digite seu nome"
+                                autocomplete="name"
+                                required
+                            >
 
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              placeholder="Crie uma senha"
-              required
-            >
-          </div>
+                        </div>
 
-          <div class="input-group">
-            <label for="confirmar-senha">
-              Confirmar senha
-            </label>
+                        <!-- E-mail -->
+                        <div class="input-group">
 
-            <input
-              type="password"
-              id="confirmar-senha"
-              name="confirmar-senha"
-              placeholder="Confirme sua senha"
-              required
-            >
-          </div>
+                            <label for="email">
+                                E-mail
+                            </label>
 
-          <button class="btn" type="submit">
-            Cadastrar
-          </button>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Digite seu e-mail"
+                                autocomplete="email"
+                                required
+                            >
 
-        </form>
+                        </div>
 
-        <p class="account">
-          Já tem conta?
-          <a href="../login/login.php">
-            Entrar
-          </a>
-        </p>
+                        <!-- Telefone -->
+                        <div class="input-group">
 
-      </div>
+                            <label for="telefone">
+                                Telefone
+                            </label>
 
-    </div>
+                            <input
+                                type="tel"
+                                id="telefone"
+                                name="telefone"
+                                placeholder="Digite seu telefone"
+                                autocomplete="tel"
+                                required
+                            >
 
-  </div>
+                        </div>
 
-</section>
+                        <!-- Senha -->
+                        <div class="input-group">
+
+                            <label for="senha">
+                                Senha
+                            </label>
+
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Crie uma senha"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+                        <!-- Confirmar senha -->
+                        <div class="input-group">
+
+                            <label for="confirmar-senha">
+                                Confirmar senha
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmar-senha"
+                                name="confirmar-senha"
+                                placeholder="Confirme sua senha"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+                        <button class="btn" type="submit">
+                            Cadastrar
+                        </button>
+
+                    </form>
+
+                    <p class="account">
+                        Já tem conta?
+                        <a href="../login/login.php">
+                            Entrar
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 </html>
